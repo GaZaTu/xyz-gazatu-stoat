@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr ""
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "o sitelen e nimi open pi tenpo ni."
 
@@ -1453,6 +1457,7 @@ msgstr "o pana e jan pona e ilo tawa ma, o musi."
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "nimi pi kama jan"

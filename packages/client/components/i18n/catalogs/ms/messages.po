@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr "Masukkan kod"
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "Masukkan kata laluan semasa anda."
 
@@ -1453,6 +1457,7 @@ msgstr "Jemput semua rakan anda, beberapa bot yang hebat, dan buat parti besar-b
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "Kod Jemputan"

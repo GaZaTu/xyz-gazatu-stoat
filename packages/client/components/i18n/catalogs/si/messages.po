@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr "කේතය යොදන්න"
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "වත්මන් මුරපදය යොදන්න."
 
@@ -1453,6 +1457,7 @@ msgstr "ඔබගේ සියලු මිතුරන්ට ආරාධනා
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "ඇරයුම් කේතය"

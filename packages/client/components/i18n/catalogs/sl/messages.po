@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr "Vpišite Kodo"
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "Vnesite svoje trenutno geslo."
 
@@ -1453,6 +1457,7 @@ msgstr "Povabite svoje prijatelje, nekaj kul robotov in priredite veliko zabavo.
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "Povabilna Koda"

@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr "Įveskite kodą"
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "Įveskite dabartinį slaptažodį."
 
@@ -1453,6 +1457,7 @@ msgstr "Pakvieskite visus savo draugus, keletą šaunių botų ir pasilinksminki
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "Kvietimo kodas"
