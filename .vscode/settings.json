@@ -3,7 +3,7 @@
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnType": false,
   "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnSaveMode": "file",
   // Enable ESLint auto-fixing on save
   "editor.codeActionsOnSave": {
