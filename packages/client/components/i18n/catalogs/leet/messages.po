@@ -1212,6 +1212,10 @@ msgid "Enter Code"
 msgstr "3N732 C0D3"
 
 #: components/auth/src/flows/Form.tsx
+msgid "Enter the invite code."
+msgstr ""
+
+#: components/auth/src/flows/Form.tsx
 msgid "Enter your current password."
 msgstr "3N732 Y0U2 CU223N7 P455W02D."
 
@@ -1453,6 +1457,7 @@ msgstr "1NV173 4LL 0F Y0U2 F213ND5, 50M3 C00L 8075, 4ND 7H20W 4 816 P427Y."
 msgid "Invite Bot"
 msgstr ""
 
+#: components/auth/src/flows/Form.tsx
 #: components/app/interface/settings/server/invites/ListServerInvites.tsx
 msgid "Invite Code"
 msgstr "1NV173 C0D3"
