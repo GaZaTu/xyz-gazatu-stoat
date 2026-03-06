@@ -81,6 +81,13 @@ export default {
     ((import.meta.env.VITE_CFG_ENABLE_VIDEO as string) ?? "").toLowerCase() ==
     "true",
   /**
+   * JSON with a custom record of settings
+   */
+  STOATZATU_CONFIG:
+    JSON.parse((import.meta.env.VITE_CFG_STOATZATU as string) ?? "{}") as {
+      klipyApikey: string
+    },
+  /**
    * Session ID to set during development.
    */
   DEVELOPMENT_SESSION_ID: import.meta.env.DEV

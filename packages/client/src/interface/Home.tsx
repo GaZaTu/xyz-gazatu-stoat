@@ -112,7 +112,7 @@ export function HomePage() {
         <Column>
           <Wordmark
             class={css({
-              width: "160px",
+              width: "500px",
               fill: "var(--md-sys-color-on-surface)",
             })}
           />

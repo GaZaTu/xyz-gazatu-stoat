@@ -22,6 +22,7 @@ import {
 } from "@revolt/ui/components/design";
 
 import { CompositionMediaPickerContext } from "./CompositionMediaPicker";
+import { klipy } from "./Klipy";
 
 type GifCategory = { title: string; image: string };
 
@@ -217,22 +218,36 @@ function GifSearch(props: { query: string }) {
 
   const search = useQuery<GifResult[]>(() => ({
     queryKey: ["gifs", props.query],
-    queryFn: () => {
-      const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+    queryFn: async () => {
+      const response = await klipy.search(props.query, {
+        customer_id: String(client()!.user?.id),
+        format_filter: ["gif", "webm"],
+      })
 
-      return fetch(
-        `${env.DEFAULT_GIFBOX_URL}/` +
-          (props.query === "trending"
-            ? `trending?locale=en_US`
-            : `search?locale=en_US&query=${encodeURIComponent(props.query)}`),
-        {
-          headers: {
-            [authHeader]: authHeaderValue,
+      return response.map(found => {
+        return {
+          url: found.file.md.gif.url,
+          media_formats: {
+            webm: {
+              url: found.file.md.webm.url,
+            },
           },
-        },
-      )
-        .then((r) => r.json())
-        .then((resp) => resp.results);
+        } as GifResult
+      })
+
+      // return fetch(
+      //   `${env.DEFAULT_GIFBOX_URL}/` +
+      //     (props.query === "trending"
+      //       ? `trending?locale=en_US`
+      //       : `search?locale=en_US&query=${encodeURIComponent(props.query)}`),
+      //   {
+      //     headers: {
+      //       [authHeader]: authHeaderValue,
+      //     },
+      //   },
+      // )
+      //   .then((r) => r.json())
+      //   .then((resp) => resp.results);
     },
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
