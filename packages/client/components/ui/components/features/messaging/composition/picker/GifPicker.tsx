@@ -227,33 +227,26 @@ function GifSearch(props: { query: string }) {
   const search = useQuery<GifResult[]>(() => ({
     queryKey: ["gifs", props.query],
     queryFn: async () => {
-      try {
-        const response = await klipy.search(props.query, {
-          customer_id: String(client()!.user?.id),
-          format_filter: ["gif", "webm"],
-        });
+      const response = await klipy.search(props.query, {
+        customer_id: String(client()!.user?.id),
+        format_filter: ["gif", "webm"],
+      });
 
-        const data = response.map((found) => {
-          return {
-            url: found.file.hd.gif.url,
-            media_formats: {
-              webm: {
-                url: found.file.hd.webm.url,
-              },
-              tinywebm: {
-                url: found.file.sm.webm.url,
-              },
+      const data = response.map((found) => {
+        return {
+          url: found.file.hd.gif.url,
+          media_formats: {
+            webm: {
+              url: found.file.hd.webm.url,
             },
-          } as GifResult;
-        });
+            tinywebm: {
+              url: found.file.sm.webm.url,
+            },
+          },
+        } as GifResult;
+      });
 
-        console.log("gifs", data);
-
-        return data;
-      } catch (error) {
-        console.error("WTF", error);
-        return [];
-      }
+      return data;
 
       // return fetch(
       //   `${env.DEFAULT_GIFBOX_URL}/` +
@@ -295,9 +288,6 @@ const GifItem = (props: {
   item: GifResult;
 }) => {
   const { onMessage } = useContext(CompositionMediaPickerContext);
-  createEffect(() => {
-    console.log("GifItem", props.item);
-  });
 
   return (
     <Gif
