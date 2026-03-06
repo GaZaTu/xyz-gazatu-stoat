@@ -2,7 +2,7 @@ import { Match, Show, Switch } from "solid-js";
 
 import { Trans } from "@lingui-solid/solid/macro";
 import { PublicChannelInvite } from "stoat.js";
-import { css, cva } from "styled-system/css";
+import { cva } from "styled-system/css";
 import { styled } from "styled-system/jsx";
 
 import { IS_DEV, useClient } from "@revolt/client";
@@ -25,8 +25,6 @@ import MdHome from "@material-design-icons/svg/filled/home.svg?component-solid";
 import MdPayments from "@material-design-icons/svg/filled/payments.svg?component-solid";
 import MdRateReview from "@material-design-icons/svg/filled/rate_review.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
-
-import Wordmark from "../../public/assets/web/wordmark.svg?component-solid";
 
 import { HeaderIcon } from "./common/CommonHeader";
 
@@ -110,12 +108,9 @@ export function HomePage() {
       </Header>
       <div use:scrollable={{ class: content() }}>
         <Column>
-          <Wordmark
-            class={css({
-              width: "500px",
-              fill: "var(--md-sys-color-on-surface)",
-            })}
-          />
+          <h1 style={{ "text-align": "center", "font-size": "2.4rem" }}>
+            STOATZATU
+          </h1>
         </Column>
         <Buttons>
           <SeparatedColumn>

@@ -3,6 +3,7 @@ import {
   Suspense,
   Switch,
   createContext,
+  createEffect,
   createMemo,
   createSignal,
   useContext,
@@ -14,7 +15,6 @@ import { useQuery } from "@tanstack/solid-query";
 import { styled } from "styled-system/jsx";
 
 import { useClient } from "@revolt/client";
-import env from "@revolt/common/lib/env";
 import {
   CircularProgress,
   TextField,
@@ -101,13 +101,15 @@ function Categories() {
   const trendingCategories = useQuery<GifCategory[]>(() => ({
     queryKey: ["trendingGifCategories"],
     queryFn: () => {
-      const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+      return [];
 
-      return fetch(`${env.DEFAULT_GIFBOX_URL}/categories?locale=en_US`, {
-        headers: {
-          [authHeader]: authHeaderValue,
-        },
-      }).then((r) => r.json());
+      // const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+
+      // return fetch(`${env.DEFAULT_GIFBOX_URL}/categories?locale=en_US`, {
+      //   headers: {
+      //     [authHeader]: authHeaderValue,
+      //   },
+      // }).then((r) => r.json());
     },
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
@@ -116,15 +118,17 @@ function Categories() {
   const trendingGif = useQuery<GifResult | null>(() => ({
     queryKey: ["trendingGif1"],
     queryFn: () => {
-      const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+      return null;
 
-      return fetch(`${env.DEFAULT_GIFBOX_URL}/trending?locale=en_US&limit=1`, {
-        headers: {
-          [authHeader]: authHeaderValue,
-        },
-      })
-        .then((r) => r.json())
-        .then((resp) => resp.results[0]);
+      // const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+
+      // return fetch(`${env.DEFAULT_GIFBOX_URL}/trending?locale=en_US&limit=1`, {
+      //   headers: {
+      //     [authHeader]: authHeaderValue,
+      //   },
+      // })
+      //   .then((r) => r.json())
+      //   .then((resp) => resp.results[0]);
     },
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
@@ -133,10 +137,14 @@ function Categories() {
 
   const items = createMemo(() => {
     return [
-      {
-        t: 1,
-        gif: trendingGif.data,
-      },
+      ...(trendingGif.data
+        ? [
+            {
+              t: 1,
+              gif: trendingGif.data,
+            },
+          ]
+        : []),
       ...(trendingCategories.data?.map((category) => ({ t: 0, category })) ??
         []),
     ] as CategoryItem[];
@@ -219,21 +227,33 @@ function GifSearch(props: { query: string }) {
   const search = useQuery<GifResult[]>(() => ({
     queryKey: ["gifs", props.query],
     queryFn: async () => {
-      const response = await klipy.search(props.query, {
-        customer_id: String(client()!.user?.id),
-        format_filter: ["gif", "webm"],
-      })
+      try {
+        const response = await klipy.search(props.query, {
+          customer_id: String(client()!.user?.id),
+          format_filter: ["gif", "webm"],
+        });
 
-      return response.map(found => {
-        return {
-          url: found.file.md.gif.url,
-          media_formats: {
-            webm: {
-              url: found.file.md.webm.url,
+        const data = response.map((found) => {
+          return {
+            url: found.file.hd.gif.url,
+            media_formats: {
+              webm: {
+                url: found.file.hd.webm.url,
+              },
+              tinywebm: {
+                url: found.file.sm.webm.url,
+              },
             },
-          },
-        } as GifResult
-      })
+          } as GifResult;
+        });
+
+        console.log("gifs", data);
+
+        return data;
+      } catch (error) {
+        console.error("WTF", error);
+        return [];
+      }
 
       // return fetch(
       //   `${env.DEFAULT_GIFBOX_URL}/` +
@@ -275,6 +295,9 @@ const GifItem = (props: {
   item: GifResult;
 }) => {
   const { onMessage } = useContext(CompositionMediaPickerContext);
+  createEffect(() => {
+    console.log("GifItem", props.item);
+  });
 
   return (
     <Gif

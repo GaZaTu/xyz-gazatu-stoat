@@ -6,14 +6,7 @@ import { useClientLifecycle } from "@revolt/client";
 import { State, TransitionType } from "@revolt/client/Controller";
 import { useModals } from "@revolt/modal";
 import { Navigate } from "@revolt/routing";
-import {
-  Button,
-  CircularProgress,
-  Column,
-  Row,
-  Text,
-  iconSize,
-} from "@revolt/ui";
+import { Button, CircularProgress, Row, Text, iconSize } from "@revolt/ui";
 
 import MdArrowBack from "@material-design-icons/svg/filled/arrow_back.svg?component-solid";
 
@@ -65,18 +58,6 @@ export default function FlowLogin() {
             </FlowTitle>
             <Form onSubmit={performLogin}>
               <Fields fields={["email", "password"]} />
-              <Column gap="xl" align>
-                <a href="/login/reset">
-                  <Button variant="text">
-                    <Trans>Reset password</Trans>
-                  </Button>
-                </a>
-                <a href="/login/resend">
-                  <Button variant="text">
-                    <Trans>Resend verification</Trans>
-                  </Button>
-                </a>
-              </Column>
               <Row align justify>
                 <a href="..">
                   <Button variant="text">

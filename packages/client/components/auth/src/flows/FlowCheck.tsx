@@ -1,14 +1,8 @@
-import { Show } from "solid-js";
-
 import { Trans } from "@lingui-solid/solid/macro";
 
-import { useNavigate } from "@revolt/routing";
-import { Button, Row, iconSize } from "@revolt/ui";
-
-import MdArrowBack from "@material-design-icons/svg/filled/arrow_back.svg?component-solid";
+import { Button, Row } from "@revolt/ui";
 
 import { FlowTitle } from "./Flow";
-import { MailProvider } from "./MailProvider";
 
 /**
  * Keep track of email within the same session
@@ -26,48 +20,21 @@ export function setFlowCheckEmail(e: string) {
  * Flow to tell the user to check their email
  */
 export default function FlowCheck() {
-  const navigate = useNavigate();
-
   return (
     <>
       <FlowTitle
-        subtitle={
-          <Trans>
-            We've sent you a verification email. Please allow up to 10 minutes
-            for it to arrive.
-          </Trans>
-        }
-        emoji="mail"
+        subtitle={<Trans>Your account has been created.</Trans>}
+        emoji="wave"
       >
-        <Trans>Check your mail!</Trans>
+        <Trans>Head to the login page.</Trans>
       </FlowTitle>
       <Row align justify>
-        <a href="..">
+        <a href="/login/auth">
           <Button variant="text">
-            <MdArrowBack {...iconSize("1.2em")} /> <Trans>Back</Trans>
+            <Trans>Login</Trans>
           </Button>
         </a>
-        <Show when={email}>
-          <MailProvider email={email} />
-        </Show>
       </Row>
-      {import.meta.env.DEV && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            background: "white",
-            color: "black",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            navigate("/login/verify/abc", { replace: true });
-          }}
-        >
-          Mock Verify
-        </div>
-      )}
     </>
   );
 }

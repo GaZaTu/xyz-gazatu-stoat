@@ -89,7 +89,7 @@ export function EmojiList(props: { server: Server }) {
               <Form2.TextField
                 name="name"
                 control={editGroup.controls.name}
-                label={t`Emoji Name`}
+                label={t`Emoji Name (lowercase only)`}
               />
 
               <Row align>

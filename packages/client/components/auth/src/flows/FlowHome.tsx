@@ -1,7 +1,6 @@
 import { Match, Show, Switch } from "solid-js";
 
 import { Trans } from "@lingui-solid/solid/macro";
-import { css } from "styled-system/css";
 
 import { useClientLifecycle } from "@revolt/client";
 import { TransitionType } from "@revolt/client/Controller";
@@ -9,7 +8,6 @@ import { Navigate } from "@revolt/routing";
 import { Button, Column } from "@revolt/ui";
 
 import { useState } from "@revolt/state";
-import Wordmark from "../../../../public/assets/web/wordmark.svg?component-solid";
 
 /**
  * Flow for logging into an account
@@ -27,42 +25,9 @@ export default function FlowHome() {
           </Show>
 
           <Column gap="xl">
-            <Wordmark
-              class={css({
-                width: "60%",
-                margin: "auto",
-                fill: "var(--md-sys-color-on-surface)",
-              })}
-            />
-
-            <Column>
-              <b
-                style={{
-                  "font-weight": 800,
-                  "font-size": "1.4em",
-                  display: "flex",
-                  "flex-direction": "column",
-                  "align-items": "center",
-                  "text-align": "center",
-                }}
-              >
-                <span>
-                  <Trans>
-                    Find your com
-                    <wbr />
-                    munity,
-                    <br />
-                    connect with the world.
-                  </Trans>
-                </span>
-              </b>
-              <span style={{ "text-align": "center", opacity: "0.5" }}>
-                <Trans>
-                  Stoat is one of the best ways to stay connected with your
-                  friends and community, anywhere, anytime.
-                </Trans>
-              </span>
-            </Column>
+            <h1 style={{ "text-align": "center", "font-size": "2.4rem" }}>
+              STOATZATU
+            </h1>
 
             <Column>
               <a href="/login/auth">
