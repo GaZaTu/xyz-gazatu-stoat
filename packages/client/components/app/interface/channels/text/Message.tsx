@@ -1,7 +1,7 @@
 import { For, Match, Show, Switch, createSignal, onMount } from "solid-js";
 
 import { useLingui } from "@lingui-solid/solid/macro";
-import { Message as MessageInterface, WebsiteEmbed } from "stoat.js";
+import { ImageEmbed, Message as MessageInterface } from "stoat.js";
 import { cva } from "styled-system/css";
 import { styled } from "styled-system/jsx";
 import { decodeTime } from "ulid";
@@ -79,16 +79,18 @@ export function Message(props: Props) {
   /**
    * Determine whether this message only contains a GIF
    */
-  const isOnlyGIF = () =>
-    props.message.embeds &&
-    props.message.embeds.length === 1 &&
-    props.message.embeds[0].type === "Website" &&
-    ((props.message.embeds[0] as WebsiteEmbed).specialContent?.type === "GIF" ||
-      (props.message.embeds[0] as WebsiteEmbed).originalUrl?.startsWith(
-        "https://tenor.com",
-      )) &&
-    props.message.content &&
-    !props.message.content.replace(RE_URL, "").length;
+  const isOnlyGIF = () => {
+    if (props.message?.embeds?.length !== 1) {
+      return false;
+    }
+
+    const embed0 = props.message.embeds[0];
+    if ((embed0 as ImageEmbed).url !== props.message.content) {
+      return false;
+    }
+
+    return true;
+  };
 
   /**
    * React with an emoji
