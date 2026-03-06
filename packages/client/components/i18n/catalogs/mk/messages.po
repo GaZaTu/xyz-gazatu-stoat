@@ -399,7 +399,6 @@ msgstr ""
 #: components/modal/modals/MFAFlow.tsx
 #: components/auth/src/flows/FlowLogin.tsx
 #: components/auth/src/flows/FlowCreate.tsx
-#: components/auth/src/flows/FlowCheck.tsx
 msgid "Back"
 msgstr ""
 
@@ -608,8 +607,8 @@ msgid "Chat Input"
 msgstr ""
 
 #: components/auth/src/flows/FlowCheck.tsx
-msgid "Check your mail!"
-msgstr "Провери си го е-маилот."
+#~ msgid "Check your mail!"
+#~ msgstr "Провери си го е-маилот."
 
 #: components/auth/src/flows/FlowLogin.tsx
 msgid "Choose a username"
@@ -1167,7 +1166,11 @@ msgid "Email"
 msgstr "Епошта"
 
 #: components/app/interface/settings/server/emojis/EmojiList.tsx
-msgid "Emoji Name"
+#~ msgid "Emoji Name"
+#~ msgstr ""
+
+#: components/app/interface/settings/server/emojis/EmojiList.tsx
+msgid "Emoji Name (lowercase only)"
 msgstr ""
 
 #: components/app/interface/settings/user/appearance/AppearanceMenu.tsx
@@ -1263,8 +1266,8 @@ msgid "Find a community based on your hobbies or interests."
 msgstr "Најдете заедница заснована на вашите хоби или интереси."
 
 #: components/auth/src/flows/FlowHome.tsx
-msgid "Find your com<0/>munity,<1/>connect with the world."
-msgstr ""
+#~ msgid "Find your com<0/>munity,<1/>connect with the world."
+#~ msgstr ""
 
 #: src/interface/navigation/servers/UserMenu.tsx
 #: src/interface/navigation/channels/HomeSidebar.tsx
@@ -1377,6 +1380,10 @@ msgstr ""
 
 #: components/app/interface/settings/user/Native.tsx
 msgid "Hardware Acceleration"
+msgstr ""
+
+#: components/auth/src/flows/FlowCheck.tsx
+msgid "Head to the login page."
 msgstr ""
 
 #: components/app/interface/settings/channel/permissions/ChannelPermissionsEditor.tsx
@@ -1626,6 +1633,7 @@ msgid "Log Out Other Sessions"
 msgstr ""
 
 #: components/auth/src/flows/FlowLogin.tsx
+#: components/auth/src/flows/FlowCheck.tsx
 msgid "Login"
 msgstr "Логирај Се"
 
@@ -2240,7 +2248,6 @@ msgid "Resend"
 msgstr ""
 
 #: components/auth/src/flows/FlowResend.tsx
-#: components/auth/src/flows/FlowLogin.tsx
 msgid "Resend verification"
 msgstr "Препрати верификација."
 
@@ -2258,7 +2265,6 @@ msgid "Reset {0}'s token?"
 msgstr ""
 
 #: components/auth/src/flows/FlowReset.tsx
-#: components/auth/src/flows/FlowLogin.tsx
 #: components/auth/src/flows/FlowConfirmReset.tsx
 msgid "Reset password"
 msgstr "Ресетирај лозинка."
@@ -2570,8 +2576,8 @@ msgid "Stoat Founder"
 msgstr ""
 
 #: components/auth/src/flows/FlowHome.tsx
-msgid "Stoat is one of the best ways to stay connected with your friends and community, anywhere, anytime."
-msgstr ""
+#~ msgid "Stoat is one of the best ways to stay connected with your friends and community, anywhere, anytime."
+#~ msgstr ""
 
 #: components/app/interface/settings/user/Native.tsx
 msgid "Stoat will start in the system tray."
@@ -2979,8 +2985,8 @@ msgid "Want to change username?"
 msgstr ""
 
 #: components/auth/src/flows/FlowCheck.tsx
-msgid "We've sent you a verification email. Please allow up to 10 minutes for it to arrive."
-msgstr "Ве молиме дозволете 10 минути да пристигне."
+#~ msgid "We've sent you a verification email. Please allow up to 10 minutes for it to arrive."
+#~ msgstr "Ве молиме дозволете 10 минути да пристигне."
 
 #: components/app/interface/channels/text/Message.tsx
 msgid "Webhook"
@@ -3177,6 +3183,10 @@ msgstr ""
 
 #: components/app/interface/settings/user/Account.tsx
 msgid "Your account and all of your data (including your messages and friends list) will be queued for deletion. A confirmation email will be sent - you can cancel this within 7 days by contacting support."
+msgstr ""
+
+#: components/auth/src/flows/FlowCheck.tsx
+msgid "Your account has been created."
 msgstr ""
 
 #: components/auth/src/flows/FlowVerify.tsx
