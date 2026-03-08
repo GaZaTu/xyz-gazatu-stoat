@@ -123,20 +123,52 @@ function VolumeSliders() {
   const state = useState();
 
   return (
-    <Column>
-      <Text class="label">
-        <Trans>Output Volume</Trans>
-      </Text>
-      <Slider
-        min={0}
-        max={3}
-        step={0.1}
-        value={state.voice.outputVolume}
-        onInput={(event) =>
-          (state.voice.outputVolume = event.currentTarget.value)
-        }
-        labelFormatter={(label) => (label * 100).toFixed(0) + "%"}
-      />
-    </Column>
+    <>
+      <Column>
+        <Text class="label">
+          <Trans>Output Volume</Trans>
+        </Text>
+        <Slider
+          min={0}
+          max={2}
+          step={0.1}
+          value={state.voice.outputVolume}
+          onInput={(event) =>
+            (state.voice.outputVolume = event.currentTarget.value)
+          }
+          labelFormatter={(label) => (label * 100).toFixed(0) + "%"}
+        />
+      </Column>
+      <Column>
+        <Text class="label">
+          <Trans>Input Volume</Trans>
+        </Text>
+        <Slider
+          min={0}
+          max={2}
+          step={0.1}
+          value={state.voice.inputVolume}
+          onInput={(event) =>
+            (state.voice.inputVolume = event.currentTarget.value)
+          }
+          labelFormatter={(label) => (label * 100).toFixed(0) + "%"}
+        />
+      </Column>
+      <Column>
+        <Text class="label">
+          <Trans>Input Noise Gate (Sensitivity)</Trans>
+        </Text>
+        <Slider
+          min={-80}
+          max={-10}
+          step={1}
+          value={state.voice.inputNoiseGate}
+          onInput={(event) =>
+            (state.voice.inputNoiseGate = event.currentTarget.value)
+          }
+          labelFormatter={(label) => label.toFixed(0) + "dB"}
+        />
+      </Column>
+    </>
   );
 }

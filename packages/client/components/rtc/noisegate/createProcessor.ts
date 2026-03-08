@@ -1,0 +1,44 @@
+import { createOpenCloseStateMachine } from "./createOpenCloseStateMachine";
+import type { NoiseGateProcessorOptions } from "./NoiseGateNode";
+import { getRms } from "./rms";
+
+export type Process = (
+  input: ArrayLike<Float32Array>,
+  output: ArrayLike<Float32Array>,
+) => void;
+
+export const createProcessor = (
+  {
+    openThreshold,
+    closeThreshold,
+    holdMs,
+    maxChannels,
+  }: Required<NoiseGateProcessorOptions>,
+  bufferMs: number,
+) => {
+  const openCloseStateMachine = createOpenCloseStateMachine({
+    openThreshold,
+    closeThreshold,
+    holdMs,
+    bufferMs,
+  });
+
+  const process: Process = (input, output) => {
+    const channels = Math.min(input.length, maxChannels);
+
+    let inputAverage = 0;
+    for (let i = 0; i < channels; i++) {
+      inputAverage += getRms(input[i]!) / channels;
+    }
+
+    openCloseStateMachine.next(inputAverage);
+
+    if (openCloseStateMachine.isOpen()) {
+      for (let i = 0; i < channels; i++) {
+        output[i]!.set(input[i]!);
+      }
+    }
+  };
+
+  return { process };
+};

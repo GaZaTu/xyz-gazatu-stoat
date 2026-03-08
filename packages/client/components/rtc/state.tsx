@@ -9,7 +9,7 @@ import {
 } from "solid-js";
 import { RoomContext } from "solid-livekit-components";
 
-import { Room } from "livekit-client";
+import { AudioPresets, Room, RoomEvent } from "livekit-client";
 import { Channel } from "stoat.js";
 
 import { useState } from "@revolt/state";
@@ -18,6 +18,7 @@ import { VoiceCallCardContext } from "@revolt/ui/components/features/voice/callC
 
 import { InRoom } from "./components/InRoom";
 import { RoomAudioManager } from "./components/RoomAudioManager";
+import { NoiseGateTrackProcessor } from "./NoiseGateTrackProcessor";
 
 type State =
   | "READY"
@@ -85,6 +86,7 @@ class Voice {
   async connect(channel: Channel, auth?: { url: string; token: string }) {
     this.disconnect();
 
+    const audioContext = new AudioContext({ sampleRate: 44000 });
     const room = new Room({
       audioCaptureDefaults: {
         deviceId: this.#settings.preferredAudioInputDevice,
@@ -94,6 +96,33 @@ class Voice {
       audioOutput: {
         deviceId: this.#settings.preferredAudioOutputDevice,
       },
+      adaptiveStream: true,
+      dynacast: true,
+      webAudioMix: {
+        audioContext,
+      },
+      publishDefaults: {
+        audioPreset: AudioPresets.speech,
+      },
+    });
+
+    room.on(RoomEvent.LocalTrackPublished, (trackPublication) => {
+      if (!trackPublication.track?.mediaStream) {
+        console.error("FDM");
+        return;
+      }
+
+      Object.assign(trackPublication.track, {
+        audioContext,
+        setAudioContext: () => {},
+      });
+
+      trackPublication.track.setProcessor(
+        new NoiseGateTrackProcessor({
+          gain: this.#settings.inputVolume,
+          threshold: this.#settings.inputNoiseGate,
+        }),
+      );
     });
 
     batch(() => {

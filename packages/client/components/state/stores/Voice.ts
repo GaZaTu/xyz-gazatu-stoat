@@ -10,6 +10,7 @@ export interface TypeVoice {
   noiseSupression: boolean;
 
   inputVolume: number;
+  inputNoiseGate: number;
   outputVolume: number;
 
   userVolumes: Record<string, number>;
@@ -43,6 +44,7 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
       echoCancellation: true,
       noiseSupression: true,
       inputVolume: 1.0,
+      inputNoiseGate: -44,
       outputVolume: 1.0,
       userVolumes: {},
       userMutes: {},
@@ -171,6 +173,13 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
   }
 
   /**
+   * Set input volume
+   */
+  set inputNoiseGate(value: number) {
+    this.set("inputNoiseGate", value);
+  }
+
+  /**
    * Set output volume
    */
   set outputVolume(value: number) {
@@ -210,6 +219,13 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
    */
   get inputVolume(): number {
     return this.get().inputVolume;
+  }
+
+  /**
+   * Get input volume
+   */
+  get inputNoiseGate(): number {
+    return this.get().inputNoiseGate;
   }
 
   /**

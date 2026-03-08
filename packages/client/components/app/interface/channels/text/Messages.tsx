@@ -281,7 +281,7 @@ export function Messages(props: Props) {
       // If we're not at the end, restore scroll position
       if (existingState && !existingState.atEnd) {
         setTimeout(() =>
-          listRef!.scrollTo({
+          listRef?.scrollTo({
             top: existingState.scrollTop!,
             behavior: "instant",
           }),
@@ -290,7 +290,7 @@ export function Messages(props: Props) {
       // Or... reset scroll to the end
       else if (atEnd()) {
         setTimeout(() =>
-          listRef!.scrollTo({
+          listRef?.scrollTo({
             top: 9999999,
             behavior: "instant",
           }),
@@ -462,8 +462,9 @@ export function Messages(props: Props) {
 
     // Scroll to the bottom if we're already at the end
     if (atEnd()) {
-      const containerChild = findScrollContainer(listRef!)!.children[0];
-      containerChild!.scrollIntoView({
+      const containerChild = findScrollContainer(listRef || null)
+        ?.children?.[0];
+      containerChild?.scrollIntoView({
         behavior: "smooth",
         block: "end",
       });
@@ -513,15 +514,16 @@ export function Messages(props: Props) {
 
         // Animate scroll to bottom
         setTimeout(() => {
-          const containerChild = findScrollContainer(listRef!)!.children[0];
+          const containerChild = findScrollContainer(listRef ?? null)
+            ?.children?.[0];
 
-          containerChild!.scrollIntoView({
+          containerChild?.scrollIntoView({
             behavior: "instant",
             block: "start",
           });
 
           setTimeout(() => {
-            containerChild!.scrollIntoView({
+            containerChild?.scrollIntoView({
               behavior: "smooth",
               block: "end",
             });
@@ -551,7 +553,7 @@ export function Messages(props: Props) {
         (entry) => entry.t === 0 && entry.message.id === messageId,
       ); // use localeCompare
 
-      listRef!.children[index + (atStart() ? 1 : 0)].scrollIntoView({
+      listRef?.children?.[index + (atStart() ? 1 : 0)]?.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
