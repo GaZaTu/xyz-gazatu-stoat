@@ -1444,6 +1444,14 @@ msgstr "Image by @fakurian"
 msgid "Impersonation"
 msgstr "Impersonation"
 
+#: components/app/interface/settings/user/voice/VoiceInputOptions.tsx
+msgid "Input Noise Gate (Sensitivity)"
+msgstr "Input Noise Gate (Sensitivity)"
+
+#: components/app/interface/settings/user/voice/VoiceInputOptions.tsx
+msgid "Input Volume"
+msgstr "Input Volume"
+
 #: components/app/interface/settings/user/Native.tsx
 msgid "Instead of closing, Stoat will hide in your tray."
 msgstr "Instead of closing, Stoat will hide in your tray."

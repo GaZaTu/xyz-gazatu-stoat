@@ -1444,6 +1444,14 @@ msgstr ""
 msgid "Impersonation"
 msgstr ""
 
+#: components/app/interface/settings/user/voice/VoiceInputOptions.tsx
+msgid "Input Noise Gate (Sensitivity)"
+msgstr ""
+
+#: components/app/interface/settings/user/voice/VoiceInputOptions.tsx
+msgid "Input Volume"
+msgstr ""
+
 #: components/app/interface/settings/user/Native.tsx
 msgid "Instead of closing, Stoat will hide in your tray."
 msgstr ""
